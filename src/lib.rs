@@ -3,7 +3,7 @@ use std::collections::HashMap;
 #[derive(Debug)]
 pub struct Array<T> {
     data: HashMap<u64, T>,
-    length: u64,
+    pub length: u64,
 }
 
 impl<T> Array<T> {
@@ -40,6 +40,23 @@ impl<T> Array<T> {
         self.data.get(&index)
     }
 
+    /// The `push` method add elements to the end
+    /// of an array and returns the new length of the array.
+    ///
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use rust_data_structures_and_algorithms::Array;
+    ///
+    /// let mut array: Array<&str> = Array::new();
+    /// array.push("foo");
+    /// assert_eq!(array.length, 1);
+    /// assert_eq!(array.push("bar"), 2);
+    /// assert_eq!(array.get(0), Some(&"foo"));
+    /// assert_eq!(array.get(1), Some(&"bar"));
+    /// assert_eq!(array.get(2), None);
+    /// ```
     pub fn push(&mut self, item: T) -> u64 {
         self.data.insert(self.length, item);
         self.length += 1;
