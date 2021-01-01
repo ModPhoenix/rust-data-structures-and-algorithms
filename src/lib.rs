@@ -42,7 +42,7 @@ impl<T> Array<T> {
 
     pub fn push(&mut self, item: T) -> u64 {
         self.data.insert(self.length, item);
-        self.length = self.length + 1;
+        self.length += 1;
         self.length
     }
 
@@ -51,6 +51,12 @@ impl<T> Array<T> {
         let item = self.data.remove(&last_item_index);
         self.length = last_item_index;
         item
+    }
+}
+
+impl<T> Default for Array<T> {
+    fn default() -> Self {
+        Self::new()
     }
 }
 
