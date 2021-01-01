@@ -63,11 +63,36 @@ impl<T> Array<T> {
         self.length
     }
 
+    /// The `pop` method removes the last element from an array
+    /// and returns that element. This method changes the length of the array.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use rust_data_structures_and_algorithms::Array;
+    ///
+    /// let mut array: Array<&str> = Array::new();
+    /// array.push("foo");
+    /// array.push("bar");
+    /// array.push("x");
+    /// assert_eq!(array.length, 3);
+    /// assert_eq!(array.pop(), Some("x"));
+    /// assert_eq!(array.length, 2);
+    /// assert_eq!(array.pop(), Some("bar"));
+    /// assert_eq!(array.pop(), Some("foo"));
+    /// assert_eq!(array.length, 0);
+    /// assert_eq!(array.pop(), None);
+    /// assert_eq!(array.length, 0);
+    /// ```
     pub fn pop(&mut self) -> Option<T> {
-        let last_item_index = self.length - 1;
-        let item = self.data.remove(&last_item_index);
-        self.length = last_item_index;
-        item
+        if self.length > 0 {
+            let last_item_index = self.length - 1;
+            let item = self.data.remove(&last_item_index);
+            self.length = last_item_index;
+            item
+        } else {
+            None
+        }
     }
 }
 
